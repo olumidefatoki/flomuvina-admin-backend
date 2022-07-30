@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -40,5 +40,26 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+
+    CONST ACTIVE = 0;
+    CONST NOT_ACTIVE = 1;
+
+    public function getActiveTextAttribute()
+    {
+        switch ($this->is_active) {
+            case $this::ACTIVE:
+                return 'active';
+            case $this::NOT_ACTIVE:
+                return 'banned';
+            default:
+                return 'unknown';
+                break;
+        }
+    }
+
+
+    protected $appends = [
+        'active_text' // this return a text based on the user "is_active" key on the model and you can check the switch case in line 48
     ];
 }
