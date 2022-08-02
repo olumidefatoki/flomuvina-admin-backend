@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('is_active')->default(0);//default means the user is always active on creation , check the user model
+            $table->integer('is_active')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

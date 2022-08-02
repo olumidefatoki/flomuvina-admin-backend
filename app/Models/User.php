@@ -51,7 +51,7 @@ class User extends Authenticatable
             case $this::ACTIVE:
                 return 'active';
             case $this::NOT_ACTIVE:
-                return 'banned';
+                return 'not active';
             default:
                 return 'unknown';
                 break;
@@ -60,6 +60,6 @@ class User extends Authenticatable
 
 
     protected $appends = [
-        'active_text' // this return a text based on the user "is_active" key on the model and you can check the switch case in line 48
+        'active_text'
     ];
 }

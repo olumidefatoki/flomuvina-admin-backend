@@ -18,7 +18,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $auth = new Authentication();
-        $resp = $auth->register($request);
+        $resp = $auth->register($request, $send_otp = true);
         return response($resp, $resp['code']);
     }
 }

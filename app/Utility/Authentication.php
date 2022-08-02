@@ -49,7 +49,7 @@ class Authentication
 
         $user_token = User::where('email', $request->get('email'))->first();
 
-        $access_token = $user_token->createToken('user token')->plainTextToken;
+        $access_token = $user_token->createToken('Auth token')->accessToken;
 
         $response = [
             'user' => User::where('email', $request->get('email'))->first(),
